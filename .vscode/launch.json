@@ -1,0 +1,48 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "START UDP (rate: 10Mbps, loss: 0.67%)",
+            "runtimeVersion": "10.0.0",
+            "program": "${workspaceFolder}/start-simulation.js",
+            "args": ["udp", "rate 10mbps loss 0.67%", "60", "/Users/jcenzano/Movies/elysium_1080p_1fk_3s_8Mbps.mp4"]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "START RTMP (rate: 10Mbps, loss: 3%)",
+            "runtimeVersion": "10.0.0",
+            "program": "${workspaceFolder}/start-simulation.js",
+            "args": ["rtmp", "rate 10mbps loss 3%", "60", "/Users/jcenzano/Movies/elysium_1080p_1fk_3s_8Mbps.mp4", "ffplay -x 1280 -y 720 -left 10 -top 10 tcp://0.0.0.0:2010?listen"]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "START SRT (rate: 11Mbps, loss: 0.67%, delay: 200ms), SRTlatency = 600ms",
+            "runtimeVersion": "10.0.0",
+            "program": "${workspaceFolder}/start-simulation.js",
+            "args": ["srt", "rate 11mbps loss 0.67% delay 200ms", "60", "/Users/jcenzano/Movies/elysium_1080p_1fk_3s_8Mbps.mp4", "", "latency=600"]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "START SRT (rate: 11Mbps, loss: 5%, delay: 20ms), SRTlatency = 100ms",
+            "runtimeVersion": "10.0.0",
+            "program": "${workspaceFolder}/start-simulation.js",
+            "args": ["srt", "rate 11mbps loss 5% delay 20ms", "60", "/Users/jcenzano/Movies/elysium_1080p_1fk_3s_8Mbps.mp4", "", "latency=100"]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "CLEAN",
+            "runtimeVersion": "10.0.0",
+            "program": "${workspaceFolder}/start-simulation.js",
+            "args": ["clean"]
+        }
+    ]
+}
