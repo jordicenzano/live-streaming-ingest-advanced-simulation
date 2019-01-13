@@ -1,11 +1,17 @@
-# live-streaming-ingest-simulation
+# live-streaming-ingest-advanced-simulation
 This project (script) allows you to simutale a noisy live streaming contibuition inside your laptop / workstation visualizing the problems in real time.
 
+Thanks to [Jon Carlos Rivera](https://github.com/imbcmdth) for all FEC decoder implementation and ffmpeg FEC patch.
+
 ## Introduction
-This script uses the docker image [jcenzano/docker-ffmpeg](https://hub.docker.com/r/jcenzano/docker-ffmpeg/) to stream a file (simulating a live stream) using one of those protocols (**udp, rmtp, srt**) to a destination, in this case another docker container.
+This script uses the docker image [jcenzano/docker-ffmpeg](https://hub.docker.com/r/jcenzano/docker-ffmpeg/) to stream a file (simulating a live stream) using one of those protocols (**udp, rmtp, srt, FEC (**) to a destination, in this case another docker container.
 It also allows you to introduce any kind of network problems (packet loss, delay, corruption, reordering, duplication, rate limiting) to the live stream and visually see the results.
 
 ![Block diagram](./pics/live-ingest-blocks.png "Block diagram")
+
+![Block diagram for FEC](./pics/live-ingest-fec-blocks.png "Block diagram for FEC")
+
+Note: To test FEC (SMPTE 2022) you need to be part of Brightcove organization and pull the following container `TODO`
 
 This code has been really useful to me to test different ingest protocols and tune their configurations.
 
@@ -28,12 +34,19 @@ Going deeper in the implementation we can say that the media file is NOT transco
 - Dependencies: [docker](https://www.docker.com/), [NodeJS(V10+)](https://nodejs.org/en/), [ffplay](https://ffmpeg.org/ffplay.html)
 - Clone this repo:
 ```
-git clone git@github.com:jordicenzano/live-streaming-ingest-simulation.git
+git clone git@github.com:jordicenzano/live-streaming-ingest-advanced-simulation.git
 ```
 
 ## Usage
 - Execute `./start-simulation.js`
 (Probably first execution will take a while because it will pull the docker container, if you want to speed up that process you could do `docker pull jcenzano/docker-ffmpeg` first)
+
+Note: FEC is only available inside Brightcove organization and you have to execute:
+```
+TODO: Create internal repos for the code and the containers
+docker pull jcenzano/docker-ffmpeg-fec
+docker pull jcenzano/docker-fec
+```
 
 - To see usage instructions you can call the script without arguments:
 ```
@@ -53,10 +66,10 @@ Example SRT:
 Example SRT:
 ./start-simulation.js srt "rate 10mbps loss 5% delay 200ms" /test-video/test.ts "internal" latency=200
 
+Example FEC:
+./start-simulation.js fec "rate 10mbps loss 5% delay 200ms" /test-video/test.ts "internal" "l=8:d=6"
+
 Clean example: start-simulation.js clean (it wil make sure all previous containers are stopped
 
 For more info about netem command see: http://man7.org/linux/man-pages/man8/tc-netem.8.html
 ```
-
-## TODO
-- Add FEC (SMPTE 2022) to the test framework

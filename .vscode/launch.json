@@ -7,18 +7,18 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "START UDP (rate: 10Mbps, loss: 0.67%)",
+            "name": "START UDP (rate: 11Mbps, loss: 0.67%)",
             "runtimeVersion": "10.0.0",
             "program": "${workspaceFolder}/start-simulation.js",
-            "args": ["udp", "rate 10mbps loss 0.67%", "60", "/Users/jcenzano/Movies/elysium_1080p_1fk_3s_8Mbps.mp4"]
+            "args": ["udp", "rate 11mbps loss 0.67%", "60", "/Users/jcenzano/Movies/elysium_1080p_1fk_3s_7Mpbs_max9Mpbs.mp4", ""]
         },
         {
             "type": "node",
             "request": "launch",
-            "name": "START RTMP (rate: 10Mbps, loss: 3%)",
+            "name": "START RTMP (rate: 11Mbps, loss: 3%)",
             "runtimeVersion": "10.0.0",
             "program": "${workspaceFolder}/start-simulation.js",
-            "args": ["rtmp", "rate 10mbps loss 3%", "60", "/Users/jcenzano/Movies/elysium_1080p_1fk_3s_8Mbps.mp4", "ffplay -x 1280 -y 720 -left 10 -top 10 tcp://0.0.0.0:2010?listen"]
+            "args": ["rtmp", "rate 11mbps loss 3%", "60", "/Users/jcenzano/Movies/elysium_1080p_1fk_3s_7Mpbs_max9Mpbs.mp4", "ffplay -x 1280 -y 720 -left 10 -top 10 tcp://0.0.0.0:2010?listen"]
         },
         {
             "type": "node",
@@ -26,7 +26,7 @@
             "name": "START SRT (rate: 11Mbps, loss: 0.67%, delay: 200ms), SRTlatency = 600ms",
             "runtimeVersion": "10.0.0",
             "program": "${workspaceFolder}/start-simulation.js",
-            "args": ["srt", "rate 11mbps loss 0.67% delay 200ms", "60", "/Users/jcenzano/Movies/elysium_1080p_1fk_3s_8Mbps.mp4", "", "latency=600"]
+            "args": ["srt", "rate 11mbps loss 0.67% delay 200ms", "60", "/Users/jcenzano/Movies/elysium_1080p_1fk_3s_7Mpbs_max9Mpbs.mp4", "", "latency=600"]
         },
         {
             "type": "node",
@@ -34,7 +34,31 @@
             "name": "START SRT (rate: 11Mbps, loss: 5%, delay: 20ms), SRTlatency = 100ms",
             "runtimeVersion": "10.0.0",
             "program": "${workspaceFolder}/start-simulation.js",
-            "args": ["srt", "rate 11mbps loss 5% delay 20ms", "60", "/Users/jcenzano/Movies/elysium_1080p_1fk_3s_8Mbps.mp4", "", "latency=100"]
+            "args": ["srt", "rate 11mbps loss 5% delay 20ms", "60", "/Users/jcenzano/Movies/elysium_1080p_1fk_3s_7Mpbs_max9Mpbs.mp4", "", "latency=100"]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "START FEC (rate: 11Mbps, loss: 0.67%, delay: 200ms), l=8 d=6 (+30%)",
+            "runtimeVersion": "10.0.0",
+            "program": "${workspaceFolder}/start-simulation.js",
+            "args": ["fec", "rate 11mbps loss 0.67% delay 200ms", "60", "/Users/jcenzano/Movies/elysium_1080p_1fk_3s_7Mpbs_max9Mpbs.mp4", "", "l=8:d=6"]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "START FEC (rate: 11Mbps, loss: 5%, delay: 200ms), l=4 d=4 (+100%)",
+            "runtimeVersion": "10.0.0",
+            "program": "${workspaceFolder}/start-simulation.js",
+            "args": ["fec", "rate 11mbps loss 5% delay 200ms", "60", "/Users/jcenzano/Movies/elysium_1080p_1fk_3s_7Mpbs_max9Mpbs.mp4", "internal", "l=4:d=4"]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "START FEC (rate: 11Mbps, loss: NO), l=4 d=4 (+100%)",
+            "runtimeVersion": "10.0.0",
+            "program": "${workspaceFolder}/start-simulation.js",
+            "args": ["fec", "rate 11mbps", "60", "/Users/jcenzano/Movies/elysium_1080p_1fk_3s_7Mpbs_max9Mpbs.mp4", "internal", "l=4:d=4"]
         },
         {
             "type": "node",
