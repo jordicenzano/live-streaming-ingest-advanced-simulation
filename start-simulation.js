@@ -45,7 +45,7 @@ const containerids_to_clean = [DOCKER_REPEATER_NAME, DOCKER_CLIENT_NAME, DOCKER_
 const cmd_docker = 'docker';
 
 if ((process.argv.length < 6) && (process.argv[2] !== 'clean')) {
-    console.log('Use ./start-simulation.js PROTOCOL(rtmp, udp, SRT, or clean) netemCmd TestDuration(s) MediaTestFile [ffplayCommand(port2010)] [ProtocolParams]');
+    console.log('Use ./start-simulation.js PROTOCOL(rtmp, udp, str, fec, or clean) netemCmd TestDuration(s) MediaTestFile [ffplayCommand(port2010)] [ProtocolParams]');
     console.log('Example: ./start-simulation.js udp "rate 10mbps loss 5% delay 200ms" /test-video/test.ts "ffplay -x 1280 -y 720 -left 1680 -top 10 tcp://0.0.0.0:2010?listen"');
     console.log('Example: ./start-simulation.js srt "rate 10mbps loss 5% delay 200ms" /test-video/test.ts "" latency=200');
     console.log('Example: ./start-simulation.js srt "rate 10mbps loss 5% delay 200ms" /test-video/test.ts "internal" latency=200');
