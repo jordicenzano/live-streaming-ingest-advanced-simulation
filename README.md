@@ -73,3 +73,9 @@ Clean example: start-simulation.js clean (it wil make sure all previous containe
 
 For more info about netem command see: http://man7.org/linux/man-pages/man8/tc-netem.8.html
 ```
+# Misc
+You can create a test file following this `ffmpeg` recipe:
+```
+ffmpeg -y -i in.mp4 -c:v libx264 -maxrate 9000k -bufsize 7000k -x264opts keyint=90:min-keyint=90:scenecut=-1 -b:v 7000k -pass 1 -c:a libfdk_aac -b:a 128k -f mp4 out.mp4
+```
+Those encoding settings simulate a live stream encoding (7Mbps with 9Mbps max and 1 keyframe every 90 frames)
