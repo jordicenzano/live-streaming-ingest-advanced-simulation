@@ -74,9 +74,10 @@ Example FEC:
 ./start-simulation.js fec "rate 10mbps loss 5% delay 200ms" /test-video/test.ts "internal" "l=8:d=6"
 
 Clean example: start-simulation.js clean (it wil make sure all previous containers are stopped
-
-For more info about netem command see: http://man7.org/linux/man-pages/man8/tc-netem.8.html
 ```
+
+Using netemCmd (netem command) you can specify any kind of network problems such us: rate limiting, packet loss, delay, corruption, duplication, reodering, etc
+For more info the about netem command syntax see: http://man7.org/linux/man-pages/man8/tc-netem.8.html
 
 # Misc
 You can create a test file following this `ffmpeg` recipe:
