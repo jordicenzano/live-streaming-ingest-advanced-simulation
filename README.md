@@ -46,10 +46,10 @@ Execute `./start-simulation.js`
 
 Note: FEC is only available inside Brightcove organization and you have to execute:
 ```
-TODO: Create internal repos for the FEC code and the containers
-TODO
-docker pull TODO/docker-ffmpeg-fec
-docker pull TODO/docker-fec
+docker login -u MyUser -p MyPass quay.io
+
+docker pull quay.io/brightcove/docker-fec
+docker pull quay.io/brightcove/docker-ffmpeg-fec
 ```
 
 To see usage instructions you can call the script without arguments:
