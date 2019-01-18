@@ -46,7 +46,7 @@ git clone git@github.com:jordicenzano/live-streaming-ingest-advanced-simulation.
 Execute `./start-simulation.js`
 (Probably first execution will take a while because it will pull the docker container, if you want to speed up that process you could do `docker pull jcenzano/docker-ffmpeg` first)
 
-Note: FEC is only available inside Brightcove organization and you have to execute:
+This is only necessary for FEC simulation (FEC is only available inside Brightcove organization):
 ```
 docker login -u MyUser -p MyPass quay.io
 
