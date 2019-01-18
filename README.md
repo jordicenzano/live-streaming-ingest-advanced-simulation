@@ -3,6 +3,8 @@ This project (script) allows you to simutale a noisy live streaming contibuition
 
 Thanks to [Jon Carlos Rivera](https://github.com/imbcmdth) for all FEC decoder implementation and ffmpeg FEC patch.
 
+Note: FEC simulation is only available inside Brightcove organization.
+
 ## Introduction
 This script uses the docker image [jcenzano/docker-ffmpeg](https://hub.docker.com/r/jcenzano/docker-ffmpeg/) to stream a file (simulating a live stream) using one of those protocols (**UDP, RTMP, SRT, TS+FEC**) to a destination, in this case another docker container.
 It also allows you to introduce any kind of network problems (packet loss, delay, corruption, reordering, duplication, rate limiting) to the live stream and visually see the results.
