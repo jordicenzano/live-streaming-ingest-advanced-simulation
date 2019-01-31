@@ -46,11 +46,11 @@ const cmd_docker = 'docker';
 
 if ((process.argv.length < 6) && (process.argv[2] !== 'clean')) {
     console.log('Use ./start-simulation.js PROTOCOL(rtmp, udp, str, fec, or clean) netemCmd TestDuration(s) MediaTestFile [ffplayCommand(port2010)] [ProtocolParams]');
-    console.log('Example: ./start-simulation.js udp "rate 10mbps loss 5% delay 200ms" /test-video/test.ts "ffplay -x 1280 -y 720 -left 1680 -top 10 tcp://0.0.0.0:2010?listen"');
-    console.log('Example: ./start-simulation.js srt "rate 10mbps loss 5% delay 200ms" /test-video/test.ts "" latency=200');
-    console.log('Example: ./start-simulation.js srt "rate 10mbps loss 5% delay 200ms" /test-video/test.ts "internal" latency=200');
-    console.log('Example: ./start-simulation.js rtmp "rate 10mbps loss 5% delay 200ms" /test-video/test.ts');
-    console.log('Example(*): ./start-simulation.js fec "rate 10mbps loss 5% delay 200ms" /test-video/test.ts "internal" "c=10 l=10"');
+    console.log('Example: ./start-simulation.js udp "rate 10mbps loss 5% delay 200ms" 60 /test-video/test.ts "ffplay -x 1280 -y 720 -left 1680 -top 10 tcp://0.0.0.0:2010?listen"');
+    console.log('Example: ./start-simulation.js srt "rate 10mbps loss 5% delay 200ms" 60 /test-video/test.ts "" latency=200');
+    console.log('Example: ./start-simulation.js srt "rate 10mbps loss 5% delay 200ms" 60 /test-video/test.ts "internal" latency=200');
+    console.log('Example: ./start-simulation.js rtmp "rate 10mbps loss 5% delay 200ms" 60 /test-video/test.ts');
+    console.log('Example(*): ./start-simulation.js fec "rate 10mbps loss 5% delay 200ms" 60 /test-video/test.ts "internal" "c=10 l=10"');
     console.log('');
     console.log('Clean example: start-simulation.js clean (it wil make sure all previous containers are stopped');
     console.log('');

@@ -60,20 +60,20 @@ Use:
 ./start-simulation.js PROTOCOL(rtmp, udp, srt, fec, or clean) netemCmd TestDuration(s) MediaTestFile [ffplayCommand(port2010)] [ProtocolParams]
 
 Example UDP:
-./start-simulation.js udp "rate 10mbps loss 5% delay 200ms" /test-video/test.ts "ffplay -x 1280 -y 720 -left 1680 -top 10 tcp://0.0.0.0:2010?listen"
+./start-simulation.js udp "rate 10mbps loss 5% delay 200ms" 60 /test-video/test.ts "ffplay -x 1280 -y 720 -left 1680 -top 10 tcp://0.0.0.0:2010?listen"
 
 Example RTMP:
-./start-simulation.js rtmp "rate 10mbps loss 5% delay 200ms" /test-video/test.ts "ffplay -x 1280 -y 720 -left 1680 -top 10 tcp://0.0.0.0:2010?listen"
+./start-simulation.js rtmp "rate 10mbps loss 5% delay 200ms" 60 /test-video/test.ts "ffplay -x 1280 -y 720 -left 1680 -top 10 tcp://0.0.0.0:2010?listen"
 
 Example SRT:
-./start-simulation.js srt "rate 10mbps loss 5% delay 200ms" /test-video/test.ts "" latency=200
+./start-simulation.js srt "rate 10mbps loss 5% delay 200ms" 60 /test-video/test.ts "" latency=200
 (In this example you have to manually launch ffplay previously)
 
 Example SRT:
-./start-simulation.js srt "rate 10mbps loss 5% delay 200ms" /test-video/test.ts "internal" latency=200
+./start-simulation.js srt "rate 10mbps loss 5% delay 200ms" 60 /test-video/test.ts "internal" latency=200
 
 Example FEC:
-./start-simulation.js fec "rate 10mbps loss 5% delay 200ms" /test-video/test.ts "internal" "l=8:d=6"
+./start-simulation.js fec "rate 10mbps loss 5% delay 200ms" 60 /test-video/test.ts "internal" "l=8:d=6"
 
 Clean example: start-simulation.js clean (it wil make sure all previous containers are stopped
 ```
