@@ -9,6 +9,10 @@ Note: FEC simulation is only available inside Brightcove organization.
 This script uses the docker image [jcenzano/docker-ffmpeg](https://hub.docker.com/r/jcenzano/docker-ffmpeg/) to stream a file (simulating a live stream) using one of those protocols (**UDP, RTMP, SRT, TS+FEC**) to a destination, in this case another docker container.
 It also allows you to introduce any kind of network problems (packet loss, delay, corruption, reordering, duplication, rate limiting) to the live stream and visually see the results.
 
+### Block diagram simple usage (only: udp, rtmp)
+![Block diagram simple](./pics/live-ingest-blocks-simple.png "Block diagram simple")
+
+
 ### Block diagram for udp, rtmp, and srt
 ![Block diagram](./pics/live-ingest-blocks.png "Block diagram")
 
@@ -43,7 +47,8 @@ git clone git@github.com:jordicenzano/live-streaming-ingest-advanced-simulation.
 ```
 
 ## Usage
-Execute `./start-simulation.js`
+For simple simulation execute `./start-simple-simulation.js`
+For complex simulation execute `./start-simulation.js`
 (Probably first execution will take a while because it will pull the docker container, if you want to speed up that process you could do `docker pull jcenzano/docker-ffmpeg` first)
 
 This is only necessary for FEC simulation (FEC is only available inside Brightcove organization):
@@ -55,6 +60,19 @@ docker pull quay.io/brightcove/docker-ffmpeg-fec
 ```
 
 To see usage instructions you can call the script without arguments:
+Simple simulation:
+```
+Use:
+./start-simple-simulation.js PROTOCOL(rtmp, udp, str, fec, or clean) netemCmd TestDuration(s) MediaTestFile DestURL
+
+Example UDP:
+./start-simple-simulation.js udp "rate 10mbps loss 5% delay 200ms" 60 /test-video/test.ts "udp://239.1.1.1:2000"
+
+Example RTMP(S):
+./start-simple-simulation.js rtmp "rate 10mbps loss 5% delay 200ms" 60 /test-video/test.ts "rtmps://myhost:2000/myStreamKey"
+```
+
+Complex simulations:
 ```
 Use:
 ./start-simulation.js PROTOCOL(rtmp, udp, srt, fec, or clean) netemCmd TestDuration(s) MediaTestFile [ffplayCommand(port2010)] [ProtocolParams]
