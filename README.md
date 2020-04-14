@@ -60,7 +60,8 @@ docker pull quay.io/brightcove/docker-fec
 docker pull quay.io/brightcove/docker-ffmpeg-fec
 ```
 
-To see usage instructions you can call the script without arguments:
+To see usage instructions you can call the script without arguments.
+
 Simple simulation:
 ```
 Use:
