@@ -60,12 +60,7 @@ console.log(`Start test for protocol ${protocol}, URL: ${dest_url}, network (net
 const client_args = ['run', '-d', '--cap-add=NET_ADMIN', '--name', `${DOCKER_CLIENT_NAME}`, '--rm', '-v', `${path.dirname(media_file)}:${DOCKER_CLIENT_MEDIA_VOLUME}`];
 
 let ffmpeg_client_args = null;
-if (protocol === 'udp') {
-    client_args.push('jcenzano/docker-ffmpeg');
-
-    ffmpeg_client_args = ['-re', '-stream_loop', '-1', '-i', path.join(DOCKER_CLIENT_MEDIA_VOLUME, path.basename(media_file)), '-c', 'copy', '-f', 'mpegts', `${dest_url}`];
-}
-else if (protocol === 'rtmp') {
+if (protocol === 'rtmp') {
     client_args.push('jcenzano/docker-ffmpeg');
 
     ffmpeg_client_args = ['-re', '-stream_loop', '-1', '-i', path.join(DOCKER_CLIENT_MEDIA_VOLUME, path.basename(media_file)), '-c', 'copy', '-f', 'flv', `${dest_url}`];

@@ -9,11 +9,12 @@ Note: FEC simulation is only available inside Brightcove organization.
 This script uses the docker image [jcenzano/docker-ffmpeg](https://hub.docker.com/r/jcenzano/docker-ffmpeg/) to stream a file (simulating a live stream) using one of those protocols (**UDP, RTMP, SRT, TS+FEC**) to a destination, in this case another docker container.
 It also allows you to introduce any kind of network problems (packet loss, delay, corruption, reordering, duplication, rate limiting) to the live stream and visually see the results.
 
-### Block diagram simple usage (only: udp, rtmp)
-![Block diagram simple](./pics/live-ingest-blocks-simple.png "Block diagram simple")
+### Block diagram simple usage (only: rtmp(s))
+![Block diagram simple cloud](./pics/live-ingest-blocks-simple-cloud.png "Block diagram simple cloud")
 
+![Block diagram simple local (MAC OS)](./pics/live-ingest-blocks-simple-cloud.png "Block diagram simple local (MAC OS)")
 
-### Block diagram for udp, rtmp, and srt
+### Block diagram for udp, rtmp(s), and srt
 ![Block diagram](./pics/live-ingest-blocks.png "Block diagram")
 
 ### Block diagram for fec
@@ -34,7 +35,7 @@ Another interesting usage that I found is to simulate real ingest links. For ins
 (*) Be careful internet conditions changes over time.
 
 Going deeper in the implementation we can say that the media file is NOT transcoded, it is just real time transmuxed to one of the following formats based on the selected protocol:
-- RTMP: Format flv
+- RTMP(s): Format flv
 - UDP: Format mpegts
 - SRT: Format mpegts
 - FEC: Format mpegts over RTP
@@ -65,11 +66,11 @@ Simple simulation:
 Use:
 ./start-simple-simulation.js PROTOCOL(rtmp, udp, str, fec, or clean) netemCmd TestDuration(s) MediaTestFile DestURL
 
-Example UDP:
-./start-simple-simulation.js udp "rate 10mbps loss 5% delay 200ms" 60 /test-video/test.ts "udp://239.1.1.1:2000"
+Example RTMP(S) to any internet destination:
+./start-simple-simulation.js rtmp "rate 10000kbit loss 5% delay 200ms" 60 /test-video/test.ts "rtmps://myhost:2000/myStreamKey"
 
-Example RTMP(S):
-./start-simple-simulation.js rtmp "rate 10mbps loss 5% delay 200ms" 60 /test-video/test.ts "rtmps://myhost:2000/myStreamKey"
+Example RTMP(S) to host destination (MAC OS):
+./start-simple-simulation.js rtmp "rate 10000kbit loss 5% delay 200ms" 60 /test-video/test.ts "rtmps://host.docker.internal:2000/myStreamKey"
 ```
 
 Complex simulations:
@@ -78,20 +79,20 @@ Use:
 ./start-simulation.js PROTOCOL(rtmp, udp, srt, fec, or clean) netemCmd TestDuration(s) MediaTestFile [ffplayCommand(port2010)] [ProtocolParams]
 
 Example UDP:
-./start-simulation.js udp "rate 10mbps loss 5% delay 200ms" 60 /test-video/test.ts "ffplay -x 1280 -y 720 -left 1680 -top 10 tcp://0.0.0.0:2010?listen"
+./start-simulation.js udp "rate 10000kbit loss 5% delay 200ms" 60 /test-video/test.ts "ffplay -x 1280 -y 720 -left 1680 -top 10 tcp://0.0.0.0:2010?listen"
 
 Example RTMP:
-./start-simulation.js rtmp "rate 10mbps loss 5% delay 200ms" 60 /test-video/test.ts "ffplay -x 1280 -y 720 -left 1680 -top 10 tcp://0.0.0.0:2010?listen"
+./start-simulation.js rtmp "rate 10000kbit loss 5% delay 200ms" 60 /test-video/test.ts "ffplay -x 1280 -y 720 -left 1680 -top 10 tcp://0.0.0.0:2010?listen"
 
 Example SRT:
-./start-simulation.js srt "rate 10mbps loss 5% delay 200ms" 60 /test-video/test.ts "" latency=200
+./start-simulation.js srt "rate 10000kbit loss 5% delay 200ms" 60 /test-video/test.ts "" latency=200
 (In this example you have to manually launch ffplay previously)
 
 Example SRT:
-./start-simulation.js srt "rate 10mbps loss 5% delay 200ms" 60 /test-video/test.ts "internal" latency=200
+./start-simulation.js srt "rate 10000kbit loss 5% delay 200ms" 60 /test-video/test.ts "internal" latency=200
 
 Example FEC:
-./start-simulation.js fec "rate 10mbps loss 5% delay 200ms" 60 /test-video/test.ts "internal" "l=8:d=6"
+./start-simulation.js fec "rate 10000kbit loss 5% delay 200ms" 60 /test-video/test.ts "internal" "l=8:d=6"
 
 Clean example: start-simulation.js clean (it wil make sure all previous containers are stopped
 ```
