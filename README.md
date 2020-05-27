@@ -106,4 +106,4 @@ You can create a test file following this `ffmpeg` recipe:
 ```
 ffmpeg -y -i in.mp4 -c:v libx264 -maxrate 9000k -bufsize 7000k -x264opts keyint=90:min-keyint=90:scenecut=-1 -b:v 7000k -pass 1 -c:a libfdk_aac -b:a 128k -f mp4 out.mp4
 ```
-Those encoding settings simulates a live stream encoded to 7Mbps with 9Mbps max and 1 keyframe every 90 frames
+Those encoding settings simulates a live stream encoded to 7Mbps with 9Mbps max and 1 keyframe every 90 frames. Remember this command uses VBR, so you should ensure the source file has enough "complexity" to hit at least 7Mbps
